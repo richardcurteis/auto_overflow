@@ -2,7 +2,7 @@
 
 from time import sleep
 from send_request import Send
-import sys
+
 
 def find_crash(target):
 

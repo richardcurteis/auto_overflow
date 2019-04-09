@@ -6,4 +6,4 @@ def validate_ip(ip):
     return IP(ip)
 
 def validate_port(port):
-    return int(port)
+    return int(port) and (port > 0 and port < 65533)

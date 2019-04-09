@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import socket
-import sys
 
 class Send:
 
@@ -11,16 +10,12 @@ class Send:
         self.path = target.path
 
     def send_payload(self, payload):
-        try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(2)
-            s.connect((self.ip, self.port))
-            s.recv(1024)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(2)
+        s.connect((self.ip, self.port))
+        s.recv(1024)
 
-            s.send((self.path + payload))
-            s.close()
-        except Exception as e:
-            print(f"Exception In send: {e}")
-            sys.exit()
+        s.send((self.path + payload.encode()))
+        s.close()
 
 
