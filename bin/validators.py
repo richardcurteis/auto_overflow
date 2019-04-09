@@ -2,8 +2,8 @@
 
 from IPy import IP
 
-def validate_ip(ip):
+def is_valid_ip(ip):
     return IP(ip)
 
-def validate_port(port):
+def is_valid_port(port):
     return int(port) and (port > 0 and port < 65533)

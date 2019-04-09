@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
 from get_args import input_args
-from validators import validate_ip, validate_port
+from validators import is_valid_ip, is_valid_port
 from initial_fuzz import find_crash
 from target import Target
 
 def main():
     args = input_args()
 
-    if validate_ip and validate_port:
+    if is_valid_ip and is_valid_port:
         args.port = int(args.port)
         target_dict = { 'ip' : args.ip,
                         'port' : args.port,
