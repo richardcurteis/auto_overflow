@@ -14,10 +14,10 @@ def main():
 
         args.port = int(args.port)
 
-        target_dict = { 'ip' : args.ip,
-                        'port' : args.port,
-                        'path' : args.path}
-    
+        target_dict = {'ip': args.ip,
+                       'port': args.port,
+                       'path': args.path}
+
         target = Target(target_dict)
 
         crash_bytes = find_crash(target)
