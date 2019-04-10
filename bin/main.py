@@ -5,6 +5,7 @@ from fuzzer import Fuzz
 from target import Target
 import sys
 from IPy import IP
+from create_pattern import Pattern
 
 
 def main():
@@ -19,9 +20,13 @@ def main():
         target = Target(target_dict)
 
         fuzz = Fuzz(target)
+        pattern = Pattern()
 
         fuzz_length = args.len if args.len else 100
         crash_bytes = fuzz.find_crash(fuzz_length)
+
+        pattern.create_pattern(crash_bytes)
+
 
         print(f"Crashed at {str(crash_bytes)} bytes...\n")
     else:
