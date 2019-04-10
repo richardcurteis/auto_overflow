@@ -13,7 +13,7 @@ def main():
     if is_valid_ip and is_valid_port:
         try:
             args.port = int(args.port)
-        except:
+        except TypeError:
             print(f"[!] Invalid Port {args.port}. Must be type integer")
         finally:
             sys.exit()
