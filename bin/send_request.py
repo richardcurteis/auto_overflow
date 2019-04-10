@@ -2,6 +2,7 @@
 
 import socket
 
+
 class Send:
 
     def __init__(self, target):

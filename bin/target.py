@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 class Target:
     def __init__(self, target):
         self.ip = target['ip']
