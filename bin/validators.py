@@ -8,4 +8,4 @@ def is_valid_ip(ip):
 
 
 def is_valid_port(port):
-        port > 0 and port < 65533
+    return 0 < port < 65533
