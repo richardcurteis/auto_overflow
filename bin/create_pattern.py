@@ -23,13 +23,13 @@ class Pattern:
                                               int_list[int_index])
                 int_index = 0
 
-                if index_down <= len(index_down - 1):
+                if index_down <= len(char_list):
                     index_down += 1
                 else:
                     index_down = 0
                     index_up += 1
 
-                if index_up <= len(index_down - 1):
+                if index_up <= len(char_list):
                     index_down = 0
         return pattern
 
