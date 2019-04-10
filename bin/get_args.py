@@ -18,4 +18,8 @@ def input_args():
                         required=True,
                         default='/')
 
+    parser.add_argument('-l',
+                        type=str,
+                        required=False)
+
     return parser.parse_args()
