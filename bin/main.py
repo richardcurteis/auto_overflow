@@ -10,13 +10,9 @@ from IPy import IP
 def main():
     args = input_args()
 
-    if IP(args.ip) and 0 < args.port < 65533:
-        try:
-            args.port = int(args.port)
-        except TypeError:
-            print(f"[!] Invalid Port {args.port}. Must be type integer")
-        finally:
-            sys.exit()
+    if IP(args.ip) and (type(args.port) is int and 0 < args.port < 65533):
+
+        args.port = int(args.port)
 
         target_dict = { 'ip' : args.ip,
                         'port' : args.port,
@@ -26,6 +22,9 @@ def main():
 
         crash_bytes = find_crash(target)
         print(f"Crashed at {str(crash_bytes)} bytes...\n")
+    else:
+        print("Invalid Arguments")
+        sys.exit()
 
 
 if __name__ == "__main__":
