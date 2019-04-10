@@ -10,9 +10,7 @@ from IPy import IP
 def main():
     args = input_args()
 
-    if IP(args.ip) and (type(args.port) is int and 0 < args.port < 65533):
-
-        args.port = int(args.port)
+    if IP(args.ip) or 'localhost' and (type(args.port) is int and 0 < args.port < 65533):
 
         target_dict = {'ip': args.ip,
                        'port': args.port,

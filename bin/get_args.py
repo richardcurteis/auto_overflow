@@ -10,7 +10,7 @@ def input_args():
                         required=True)
 
     parser.add_argument('-port',
-                        type=str,
+                        type=int,
                         required=True)
 
     parser.add_argument('-path',
