@@ -15,7 +15,7 @@ class Send:
         s.connect((self.ip, self.port))
         s.recv(1024)
 
-        s.send((self.path + payload.encode()))
+        s.send((self.path + payload).encode())
         s.close()
 
 

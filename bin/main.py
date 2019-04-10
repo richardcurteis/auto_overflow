@@ -5,6 +5,7 @@ from validators import is_valid_ip, is_valid_port
 from initial_fuzz import find_crash
 from target import Target
 
+
 def main():
     args = input_args()
 
@@ -18,11 +19,6 @@ def main():
 
         crash_bytes = find_crash(target)
         print(f"Crashed at {str(crash_bytes)} bytes...\n")
-    
-
-
-
-
 
 
 if __name__ == "__main__":

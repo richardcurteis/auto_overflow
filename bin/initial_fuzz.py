@@ -14,6 +14,5 @@ def find_crash(target):
             s.send_payload(buffer)
             sleep(1)
             buffer = buffer + "A" * 100
-        except Exception as e:
-            print("Exception: " + str(e))
+        except:
             return len(buffer)
