@@ -4,13 +4,20 @@ from get_args import input_args
 from validators import is_valid_ip, is_valid_port
 from initial_fuzz import find_crash
 from target import Target
+import sys
 
 
 def main():
     args = input_args()
 
     if is_valid_ip and is_valid_port:
-        args.port = int(args.port)
+        try:
+            args.port = int(args.port)
+        except:
+            print(f"[!] Invalid Port {args.port}. Must be type integer")
+        finally:
+            sys.exit()
+
         target_dict = { 'ip' : args.ip,
                         'port' : args.port,
                         'path' : args.path}
