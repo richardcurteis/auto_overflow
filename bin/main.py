@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 
 from get_args import input_args
-from validators import is_valid_ip, is_valid_port
 from initial_fuzz import find_crash
 from target import Target
 import sys
+from IPy import IP
 
 
 def main():
     args = input_args()
 
-    if is_valid_ip and is_valid_port:
+    if IP(args.ip) and 0 < args.port < 65533:
         try:
             args.port = int(args.port)
         except TypeError:
