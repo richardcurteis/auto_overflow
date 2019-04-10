@@ -9,17 +9,17 @@ class Fuzz:
     def __init__(self, target):
         self.TARGET = target
 
-    def find_crash(self):
+    def find_crash(self, fuzz_len):
 
-        buffer = "A" * 100
+        buffer = "A" * fuzz_len
         s = Send(self.TARGET)
 
         while True:
             try:
                 s.send_payload(buffer)
                 sleep(1)
-                buffer = buffer + "A" * 100
-            except TypeError:
+                buffer = buffer + "A" * fuzz_len
+            except:
                 return len(buffer)
 
 

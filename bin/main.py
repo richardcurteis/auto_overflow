@@ -20,7 +20,9 @@ def main():
 
         fuzz = Fuzz(target)
 
-        crash_bytes = fuzz.find_crash()
+        fuzz_length = args.len if args.len else 100
+        crash_bytes = fuzz.find_crash(fuzz_length)
+
         print(f"Crashed at {str(crash_bytes)} bytes...\n")
     else:
         print("Invalid Arguments")
