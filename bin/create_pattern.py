@@ -7,7 +7,7 @@ class Pattern:
         index_up, index_down, int_index = 0, 0, 0
 
         int_list = list(range(0, 10))
-        int_limit = 8 #len(int_list)-1 # 8
+        int_limit = len(int_list)-1 # 9
 
         char_list = string.ascii_lowercase
         char_limit = len(char_list)-1 # 25
