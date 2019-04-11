@@ -10,17 +10,11 @@ class Pattern:
         pattern = ''
 
         while len(pattern) < length:
-            if int_index < 9:
-                pattern = self.extend_pattern(pattern,
-                                              char_list[index_up],
-                                              char_list[index_down],
-                                              int_list[int_index])
+            if int_index <= 9:
+                pattern = pattern + char_list[index_up].capitalize() + char_list + str(int_list[int_index])
                 int_index += 1
+
             else:
-                pattern = self.extend_pattern(pattern,
-                                              char_list[index_up],
-                                              char_list[index_down],
-                                              int_list[int_index])
                 int_index = 0
 
                 if index_down <= len(char_list):
