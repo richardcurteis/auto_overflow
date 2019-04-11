@@ -7,15 +7,15 @@ def input_args():
 
     parser.add_argument('-ip',
                         type=str,
-                        required=True)
+                        required=False)
 
     parser.add_argument('-port',
                         type=int,
-                        required=True)
+                        required=False)
 
     parser.add_argument('-path',
                         type=str,
-                        required=True,
+                        required=False,
                         default='/')
 
     parser.add_argument('-len',

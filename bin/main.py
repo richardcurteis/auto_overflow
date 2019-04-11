@@ -10,6 +10,11 @@ from create_pattern import Pattern
 
 def main():
     args = input_args()
+    pattern = Pattern()
+
+    if type(args.len) is int:
+        print(pattern.create_pattern(args.len))
+        sys.exit()
 
     if IP(args.ip) or 'localhost' and (type(args.port) is int and 0 < args.port < 65533):
 
@@ -20,7 +25,6 @@ def main():
         target = Target(target_dict)
 
         fuzz = Fuzz(target)
-        pattern = Pattern()
 
         fuzz_length = args.len if args.len else 100
         crash_bytes = fuzz.find_crash(fuzz_length)
