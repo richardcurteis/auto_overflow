@@ -38,13 +38,14 @@ def main():
 
         user_input.get_input("DEBUG....")
 
+        # Send pattern to application to identify EIP overwrite
         fuzz.locate_eip(pat)
 
-        # User input what is in EIP
+        # Get EIP value
         eip_query = user_input.get_input("EIP String")
 
-        # Position of EIP query in string
-        # Decodes hex to ascii before passing
+        # Find position of EIP query in string
+        # NOTE: Decodes EIP hex to ascii before passing
         offset = pattern.find_offset(bytearray.fromhex(eip_query).decode())
 
         print(offset)
