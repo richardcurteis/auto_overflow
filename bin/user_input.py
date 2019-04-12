@@ -1,6 +1,6 @@
 
 def get_input(message):
     try:
-        return int(input(message + ": "))
+        return input(message + ": ")
     except TypeError:
-        "Input must be type: int"
+        "Input must be type: string"

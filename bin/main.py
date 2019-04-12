@@ -36,17 +36,19 @@ def main():
         # Create pattern from crash bytes plus 300 byte padding
         pat = pattern.create_pattern(crash_bytes + 300)
 
-        user_input.get_input("DEBUG....")
+        # Reset vulnserver
+        user_input.get_input("DEBUG: User reset VS")
 
         # Send pattern to application to identify EIP overwrite
         fuzz.locate_eip(pat)
 
-        # Get EIP value
+        # Get EIP value from user
         eip_query = user_input.get_input("EIP String")
 
         # Find position of EIP query in string
         # NOTE: Decodes EIP hex to ascii before passing
-        offset = pattern.find_offset(bytearray.fromhex(eip_query).decode())
+        clear_text = bytearray.fromhex(eip_query).decode('utf-8')
+        offset = pattern.find_offset(clear_text)
 
         print(offset)
 
