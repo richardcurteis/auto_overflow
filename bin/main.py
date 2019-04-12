@@ -6,6 +6,7 @@ from target import Target
 import sys
 from IPy import IP
 from create_pattern import Pattern
+import user_input
 
 
 def main():
@@ -14,7 +15,8 @@ def main():
 
     if type(args.len) is int:
         print(pattern.create_pattern(args.len))
-        sys.exit()
+        if len(args) == 1:
+            sys.exit()
 
     if IP(args.ip) or 'localhost' and (type(args.port) is int and 0 < args.port < 65533):
 
@@ -23,16 +25,30 @@ def main():
                        'path': args.path}
 
         target = Target(target_dict)
-
         fuzz = Fuzz(target)
 
         fuzz_length = args.len if args.len else 100
+
+        # bytes to crash program
         crash_bytes = fuzz.find_crash(fuzz_length)
+        print(f'[*] Program crashed at {crash_bytes} bytes...')
 
-        pattern.create_pattern(crash_bytes)
+        # Create pattern from crash bytes plus 300 byte padding
+        pat = pattern.create_pattern(crash_bytes + 300)
 
+        user_input.get_input("DEBUG....")
 
-        print(f"Crashed at {str(crash_bytes)} bytes...\n")
+        fuzz.locate_eip(pat)
+
+        # User input what is in EIP
+        eip_query = user_input.get_input("EIP String")
+
+        # Position of EIP query in string
+        # Decodes hex to ascii before passing
+        offset = pattern.find_offset(bytearray.fromhex(eip_query).decode())
+
+        print(offset)
+
     else:
         print("Invalid Arguments")
         sys.exit()

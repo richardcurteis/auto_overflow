@@ -9,7 +9,7 @@ class Fuzz:
     def __init__(self, target):
         self.TARGET = target
 
-    def find_crash(self, fuzz_len):
+    def find_crash(self, fuzz_len=100):
 
         buffer = "A" * fuzz_len
         s = Send(self.TARGET)
@@ -23,3 +23,9 @@ class Fuzz:
                 return len(buffer)
 
 
+    def locate_eip(self, pattern):
+        s = Send(self.TARGET)
+        try:
+            s.send_payload(pattern)
+        except:
+            print("Program crashed...")

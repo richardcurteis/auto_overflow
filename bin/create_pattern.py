@@ -3,6 +3,9 @@ import string
 
 class Pattern:
 
+    def __init__(self):
+        self.pattern = ''
+
     def create_pattern(self, length):
         index_up, index_down, int_index = 0, 0, 0
 
@@ -16,7 +19,8 @@ class Pattern:
 
         while len(pattern) < length:
             if int_index <= int_limit:
-                pattern = pattern + char_list[index_up].capitalize() + char_list[index_down] + str(int_list[int_index])
+                new_sequence = char_list[index_up].capitalize() + char_list[index_down] + str(int_list[int_index])
+                pattern = pattern + new_sequence
                 int_index += 1
 
             else:
@@ -32,7 +36,11 @@ class Pattern:
                 if index_up > char_limit:
                     index_up = 0
 
+        self.pattern = pattern
         return pattern
+
+    def find_offset(self, query):
+        return self.pattern.find(query)
 
     def extend_pattern(self, pattern, upper, lower, integer):
         return pattern + upper.capitalize() + lower + str(integer)
