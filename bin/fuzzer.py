@@ -2,6 +2,7 @@
 
 from time import sleep
 from send_request import Send
+from create_pattern import Pattern
 
 
 class Fuzz:
@@ -22,9 +23,11 @@ class Fuzz:
             except:
                 return len(buffer)
 
-
-    def locate_eip(self, pattern):
-        s = Send(self.TARGET)
+    def locate_eip(self, pattern='', length=0):
+        if length > 0:
+            pat = Pattern()
+            pattern = pat.create_pattern(length)
+            s = Send(self.TARGET)
         try:
             s.send_payload(pattern)
         except:

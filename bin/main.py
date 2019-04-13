@@ -27,11 +27,15 @@ def main():
         target = Target(target_dict)
         fuzz = Fuzz(target)
 
+        if args.eip:
+            fuzz.locate_eip('', args.eip)
+            sys.exit()
+
         fuzz_length = args.len if args.len else 100
 
         # bytes to crash program
         crash_bytes = fuzz.find_crash(fuzz_length)
-        print(f'[*] Program crashed at {crash_bytes} bytes...')
+        print(f"[*] Program crashed at {crash_bytes} bytes...")
 
         # Create pattern from crash bytes plus 300 byte padding
         pat = pattern.create_pattern(crash_bytes + 300)
