@@ -41,13 +41,13 @@ def main():
         pat = pattern.create_pattern(crash_bytes + 300)
 
         # Reset vulnserver
-        user_input.get_input("DEBUG: User reset VS")
+        user_input.get_input("DEBUG: User reset debugger...")
 
         # Send pattern to application to identify EIP overwrite
         fuzz.locate_eip(pat)
 
         # Get EIP value from user
-        eip_query = user_input.get_input("EIP String")
+        eip_query = user_input.get_input("Enter EIP Value")
 
         # Find position of EIP query in string
         # NOTE: Decodes EIP hex to ascii before passing
