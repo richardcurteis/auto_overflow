@@ -13,11 +13,6 @@ def main():
     args = input_args()
     pattern = Pattern()
 
-    if type(args.len) is int:
-        print(pattern.create_pattern(args.len))
-        if len(args) == 1:
-            sys.exit()
-
     if IP(args.ip) or 'localhost' and (type(args.port) is int and 0 < args.port < 65533):
 
         target_dict = {'ip': args.ip,
@@ -51,7 +46,7 @@ def main():
 
         # Find position of EIP query in string
         # NOTE: Decodes EIP hex to ascii before passing
-        clear_text = bytearray.fromhex(eip_query).decode('utf-8')
+        clear_text = bytearray.fromhex(eip_query).decode()[::-1]
         offset = pattern.find_offset(clear_text)
 
         print(offset)
