@@ -43,7 +43,8 @@ class Main:
 
             # Reset application
 
-            user_input.get_input("DEBUG: User reset debugger...")
+            print("[!] Waiting for application to restart.\n")
+            fuzz.is_target_up()
 
             # Send pattern to application to identify EIP overwrite
             fuzz.locate_eip(pat)
@@ -51,9 +52,13 @@ class Main:
             # Get EIP value from user
             eip_query = user_input.get_input("[*] Enter EIP Value")
 
+            print("[!] Waiting for application to restart.\n")
+            fuzz.is_target_up()
+
+            print("Targeting EIP with all 'B's...")
             offset = self.get_offset(eip_query)
 
-            fuzz.confirm_eip(offset)
+            print(f"Offet at: {fuzz.confirm_eip(offset)}")
 
         else:
             print("Invalid Arguments")

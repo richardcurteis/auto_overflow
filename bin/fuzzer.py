@@ -38,5 +38,14 @@ class Fuzz:
             self.s.send_payload(payload)
         except Exception as e:
             print(str(e))
-            print("Program crashed...")
+            print("Program crashed...\n")
 
+    def is_target_up(self):
+        while True:
+            try:
+                self.s.send_payload('A')
+                print('[!] Target back up. Continuing...\n')
+                return True
+            except:
+                sleep(1)
+                pass
