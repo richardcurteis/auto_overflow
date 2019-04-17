@@ -58,7 +58,7 @@ class Main:
             print("[*] Targeting EIP with all 'B's...")
             offset = self.get_offset(eip_query)
 
-            print(f"[*] Offet at: {fuzz.confirm_eip(offset)}")
+            print(f"[*] Offset at: {fuzz.confirm_eip(offset)}")
             sys.exit()
 
         else:
