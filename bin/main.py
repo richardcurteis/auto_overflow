@@ -58,7 +58,13 @@ class Main:
             print("[*] Targeting EIP with all 'B's...")
             offset = self.get_offset(eip_query)
 
-            print(f"[*] Offset at: {fuzz.confirm_eip(offset)}")
+            print(f"[*] Offset at: {fuzz.confirm_eip(offset)}\n")
+
+            print("[!] Waiting for application to restart.\n")
+            fuzz.is_target_up()
+
+            print("[*] Sending all characters...\n")
+            fuzz.check_bad_chars(offset)
             sys.exit()
 
         else:
