@@ -35,12 +35,14 @@ class Main:
 
             # bytes to crash program
             crash_bytes = fuzz.find_crash(fuzz_length)
-            print(f"[*] Program crashed at {crash_bytes} bytes...")
+            print(f"[*] Program crashed at {crash_bytes} bytes...\n")
 
-            # Create pattern from crash bytes plus 300 byte padding
             pat = self.get_pattern(crash_bytes)
 
+            print("[*] Pattern created\n")
+
             # Reset application
+
             user_input.get_input("DEBUG: User reset debugger...")
 
             # Send pattern to application to identify EIP overwrite
@@ -49,9 +51,6 @@ class Main:
             # Get EIP value from user
             eip_query = user_input.get_input("[*] Enter EIP Value")
 
-            # Find position of EIP query in string
-            # NOTE: Decodes EIP hex to ascii before passing
-            # Reverses result due to little endianness
             offset = self.get_offset(eip_query)
 
             fuzz.confirm_eip(offset)
@@ -61,9 +60,13 @@ class Main:
             sys.exit()
 
     def get_pattern(self, crash_bytes):
+        # Create pattern from crash bytes plus 300 byte padding
         return self.pattern.create_pattern(crash_bytes + 300)
 
     def get_offset(self, eip_query):
+        # Find position of EIP query in string
+        # NOTE: Decodes EIP hex to ascii before passing
+        # Reverses result due to little endianness
         clear_text = bytearray.fromhex(eip_query).decode()[::-1]
         return self.pattern.find_offset(clear_text)
 
