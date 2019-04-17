@@ -55,10 +55,11 @@ class Main:
             print("[!] Waiting for application to restart.\n")
             fuzz.is_target_up()
 
-            print("Targeting EIP with all 'B's...")
+            print("[*] Targeting EIP with all 'B's...")
             offset = self.get_offset(eip_query)
 
-            print(f"Offet at: {fuzz.confirm_eip(offset)}")
+            print(f"[*] Offet at: {fuzz.confirm_eip(offset)}")
+            sys.exit()
 
         else:
             print("Invalid Arguments")
