@@ -38,7 +38,7 @@ class Main:
             print(f"[*] Program crashed at {crash_bytes} bytes...")
 
             # Create pattern from crash bytes plus 300 byte padding
-            pat = self.get_pattern(crash_bytes + 300)
+            pat = self.get_pattern(crash_bytes)
 
             # Reset application
             user_input.get_input("DEBUG: User reset debugger...")
@@ -47,7 +47,7 @@ class Main:
             fuzz.locate_eip(pat)
 
             # Get EIP value from user
-            eip_query = user_input.get_input("Enter EIP Value")
+            eip_query = user_input.get_input("[*] Enter EIP Value")
 
             # Find position of EIP query in string
             # NOTE: Decodes EIP hex to ascii before passing
