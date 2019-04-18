@@ -19,7 +19,7 @@ class Main:
         args = input_args()
         self.pattern = Pattern()
 
-        if IP(args.ip) or 'localhost' and (type(args.port) is int and 0 < args.port < 65533):
+        if IP(args.ip) or 'localhost' and (type(args.port) is int and 0 < args.port <= 65533):
 
             target_dict = {'ip': args.ip,
                            'port': args.port,
