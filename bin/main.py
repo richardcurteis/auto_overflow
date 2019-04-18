@@ -54,11 +54,14 @@ class Main:
 
             print("[!] Waiting for application to restart.\n")
             fuzz.is_target_up()
-
-            print("[*] Targeting EIP with all 'B's...")
+            
+            # Determine EIP offset
             offset = self.get_offset(eip_query)
 
-            print(f"[*] Offset at: {fuzz.confirm_eip(offset)}\n")
+            print("[*] Targeting EIP with all 'B's...")
+            fuzz.confirm_eip(offset)
+
+            print(f"[*] Offset at: {offset}\n")
 
             print("[!] Waiting for application to restart.\n")
             fuzz.is_target_up()
