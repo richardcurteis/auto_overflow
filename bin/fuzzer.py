@@ -3,7 +3,6 @@
 from time import sleep
 from send_request import Send
 from create_pattern import Pattern
-from bad_characters import bad_characters
 
 
 class Fuzz:
@@ -33,16 +32,7 @@ class Fuzz:
             print(str(e))
             print("Program crashed...")
 
-    def confirm_eip(self, offset):
-        payload = "A" * offset + "B" * 4
-        try:
-            self.s.send_payload(payload)
-        except Exception as e:
-            print(str(e))
-            print("Program crashed...\n")
-
-    def check_bad_chars(self, offset):
-        payload = "A" * offset + "B" * 4 + bad_characters()
+    def send_payload(self, payload):
         try:
             self.s.send_payload(payload)
         except Exception as e:
