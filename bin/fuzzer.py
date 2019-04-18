@@ -30,7 +30,7 @@ class Fuzz:
             self.s.send_payload(pattern)
         except Exception as e:
             print(str(e))
-            print("Program crashed...")
+            print("Program crashed...\n")
 
     def send_payload(self, payload):
         try:
