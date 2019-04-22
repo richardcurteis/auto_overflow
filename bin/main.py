@@ -6,7 +6,6 @@ from target import Target
 import sys
 from IPy import IP
 from create_pattern import Pattern
-import user_input
 from bad_characters import bad_characters
 
 
@@ -51,7 +50,7 @@ class Main:
             fuzz.locate_eip(pat)
 
             # Get EIP value from user
-            eip_query = user_input.get_input("[*] Enter EIP Value")
+            eip_query = input("[*] Enter EIP Value: ")
 
             print("[!] Waiting for application to restart.\n")
             fuzz.is_target_up()
