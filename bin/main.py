@@ -18,7 +18,8 @@ class Main:
 
             target_dict = {'ip': args.ip,
                            'port': args.port,
-                           'path': args.path}
+                           'path': args.path,
+                           'enumerated': False}
 
             target = Target(target_dict)
 
@@ -27,7 +28,12 @@ class Main:
                 # Will return a modified 'target' dictionary
                 target = enum.enumerate(args, target)
             else:
-                pass
+                if target.enumerated:
+                    pass
+                else:
+                    # fuzz.pwn()
+                    pass
+            pass
                 # pwn module here
 
             sys.exit()
