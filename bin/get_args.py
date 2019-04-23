@@ -26,4 +26,10 @@ def input_args():
                         type=int,
                         required=False)
 
+    parser.add_argument('-enum',
+                        required=False)
+
+    parser.add_argument('-pwn',
+                        required=False)
+
     return parser.parse_args()
