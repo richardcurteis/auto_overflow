@@ -24,6 +24,7 @@ class Main:
 
             if args.enum:
                 enum = Enum()
+                # Will return a modified 'target' dictionary
                 target = enum.enumerate(args, target)
             else:
                 pass
