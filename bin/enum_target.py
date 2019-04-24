@@ -58,11 +58,11 @@ class Enum:
         print(f"[-] Run: '!mona compare -f bytearray.bin -a {bad_char_esp}'\n")
 
 
-        print(f"Run: '!mona modules'\n")
+        print(f"[-] Run: '!mona modules'\n")
         dll = input("Enter target DLL: ")
 
-        print(f"Run: '!mona modules'\n")
-        dll = input("Enter target DLL: ").strip()
+        print(f"[-] Run: '!mona modules'\n")
+        dll = input("[?] Enter target DLL: ").strip()
 
 
         print(f"\n[-] Run: '!mona find -s '\\xff\\xe4' -m {dll}'\n")
