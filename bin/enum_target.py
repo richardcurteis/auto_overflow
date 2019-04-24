@@ -56,7 +56,7 @@ class Enum:
         fuzz.is_target_up()
 
         print("[*] Sending buffer + 4 * 'B' + 390 * 'C'\n")
-        fuzz.send_payload("A" * offset + "B" * 4 + "C" * 390)
+        fuzz.send_payload("A" * offset + "B" * 4 + "C" * 500)
 
     def get_pattern(self, crash_bytes):
         # Create pattern from crash bytes plus 300 byte padding
