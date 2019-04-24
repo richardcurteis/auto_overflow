@@ -31,5 +31,9 @@ def input_args():
 
     parser.add_argument('-pwn',
                         required=False)
+    
+    parser.add_argument('-platform',
+                        type=str,
+                        required=False)
 
     return parser.parse_args()
