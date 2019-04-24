@@ -4,7 +4,6 @@ from get_args import input_args
 from target import Target
 import sys
 from IPy import IP
-from create_pattern import Pattern
 from enum_target import Enum
 
 
@@ -12,7 +11,6 @@ class Main:
 
     def main(self):
         args = input_args()
-        self.pattern = Pattern()
 
         if IP(args.ip) or 'localhost' and (type(args.port) is int and 0 < args.port <= 65533):
 
@@ -31,7 +29,6 @@ class Main:
                 if target.enumerated:
                     pass
                 else:
-                    # fuzz.pwn()
                     pass
             pass
                 # pwn module here
