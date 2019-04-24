@@ -31,7 +31,7 @@ class Enum:
             fuzz.locate_eip(pat)
 
             # Get EIP value from user
-            eip_query = input("[*] Enter EIP Value: ")
+            eip_query = input("[?] Enter EIP Value: ")
 
             print("[!] Waiting for application to restart.\n")
             fuzz.is_target_up()
