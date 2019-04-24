@@ -62,7 +62,7 @@ class Enum:
         dll = input("Enter target DLL: ")
 
         print(f"Run: '!mona modules'\n")
-        dll = input("Enter target DLL: ")
+        dll = input("Enter target DLL: ").strip()
 
 
         print(f"\n[-] Run: '!mona find -s '\\xff\\xe4' -m {dll}'\n")
