@@ -1,4 +1,4 @@
-CURRENTLY BROKEN. I will fix it whne I have time.
+CURRENTLY BROKEN. I will fix it when I have time.
 Please don't judge my shoddy code.
 
 Basic script for fuzzing and enumerating a service for vanilla 32-bit buffer overflows.
@@ -9,7 +9,7 @@ Essentially this is a copy of the functionality provided by Metasploit's `create
 
 This just part of OSCP study and will hopefully be useful for automating some enumeration if required. Mostly it is just for me to properly look at the BO mecahnics and practice my Python on a tangible project.
 
-User just nees to enter EIP value and restart target manually.
+User just needs to enter EIP value and restart target manually.
 
 I'll look to add a loop for automatically targeting the exact EIP overload point without human input. We shall see!
 
